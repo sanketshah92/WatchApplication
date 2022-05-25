@@ -23,16 +23,6 @@ class CustomScrollingLayoutCallback : WearableLinearLayoutManager.LayoutCallback
             progressToCenter = abs(0.5f - yRelativeToCenterOffset)
             // Adjust to the maximum scale
             progressToCenter = progressToCenter.coerceAtMost(MAX_ICON_PROGRESS)
-            val centerPosition = 1 - progressToCenter
-            val textView = child as TextView
-            if (centerPosition >= 0.9) {
-                textView.setTextColor(Color.parseColor("#DB00FF"))
-                child.background =
-                    resources.getDrawable(R.drawable.rounded_bg_focused_menu_item, null)
-            } else {
-                textView.setTextColor(Color.BLACK)
-                child.background = resources.getDrawable(R.drawable.rounded_bg_main_menu, null)
-            }
         }
     }
 }
