@@ -1,10 +1,11 @@
-package com.sanket.watchapplication
+package com.sanket.watchapplication.presentation
 
-import android.app.Activity
+
 import android.os.Bundle
+import androidx.fragment.app.FragmentActivity
 import com.sanket.watchapplication.databinding.ActivityMainBinding
 
-class MainActivity : Activity() {
+class MainActivity : FragmentActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
