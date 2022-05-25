@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearSnapHelper
-import androidx.recyclerview.widget.SnapHelper
 import androidx.wear.widget.WearableLinearLayoutManager
 import com.sanket.watchapplication.R
 import com.sanket.watchapplication.presentation.mainMenu.utils.CustomScrollingLayoutCallback
@@ -41,11 +41,11 @@ class MainMenuFragment : Fragment() {
         menuAdapter =
             MainMenuAdapter(getMenuData(), object : MainMenuAdapter.OnMenuItemClickListener {
                 override fun onMenuItemSelected(selectedItem: String) {
-                    when(selectedItem){
-                        "Measure HR"-> {
-                            //Navigate to Measure HR
+                    when (selectedItem) {
+                        "Measure HR" -> {
+                            findNavController().navigate(R.id.action_mainMenuFragment_to_measureHeartRateFragment)
                         }
-                        "Export HR Data"->{
+                        "Export HR Data" -> {
                             //Navigate to Export Heart Rate
                         }
                     }

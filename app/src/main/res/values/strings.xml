@@ -7,4 +7,5 @@
     <string name="hello_world">Hello Square World!</string>
     <string name="start_continuous_heart_rate_measurements">Start continuous heart rate measurements</string>
     <string name="start">Start</string>
+    <string name="stop">Stop</string>
 </resources>

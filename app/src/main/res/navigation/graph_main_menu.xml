@@ -11,6 +11,14 @@
         android:label="MainMenuFragment"
         tools:layout="@layout/fragment_main_menu">
 
+        <action
+            android:id="@+id/action_mainMenuFragment_to_measureHeartRateFragment"
+            app:destination="@id/measureHeartRateFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/measureHeartRateFragment"
+        android:name="com.sanket.watchapplication.presentation.measureHR.MeasureHeartRateFragment"
+        android:label="MeasureHeartRateFragment"
+        tools:layout="@layout/fragment_measure_hr" />
 
 </navigation>
