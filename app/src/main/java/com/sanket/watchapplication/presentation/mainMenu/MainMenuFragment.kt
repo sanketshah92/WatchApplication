@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.SnapHelper
 import androidx.wear.widget.WearableLinearLayoutManager
 import com.sanket.watchapplication.R
 import com.sanket.watchapplication.presentation.mainMenu.utils.CustomScrollingLayoutCallback
@@ -53,6 +55,8 @@ class MainMenuFragment : Fragment() {
     }
 
     private fun setupMenuView() {
+        val snapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(mainMenuRecycler)
         mainMenuRecycler.apply {
             layoutManager = WearableLinearLayoutManager(activity, CustomScrollingLayoutCallback())
             isEdgeItemsCenteringEnabled = true
