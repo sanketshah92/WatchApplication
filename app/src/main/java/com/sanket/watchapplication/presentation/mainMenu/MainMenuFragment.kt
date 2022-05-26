@@ -29,11 +29,8 @@ class MainMenuFragment : Fragment() {
 
     private fun getMenuData(): List<String> {
         val menuItems = mutableListOf<String>()
-        menuItems.add("Action 1")
-        menuItems.add("Measure HR")
-        menuItems.add("Export HR Data")
-        menuItems.add("Action 3")
-        menuItems.add("Action 4")
+        menuItems.add(resources.getString(R.string.action_measure))
+        menuItems.add(resources.getString(R.string.action_export))
         return menuItems
     }
 
@@ -42,10 +39,10 @@ class MainMenuFragment : Fragment() {
             MainMenuAdapter(getMenuData(), object : MainMenuAdapter.OnMenuItemClickListener {
                 override fun onMenuItemSelected(selectedItem: String) {
                     when (selectedItem) {
-                        "Measure HR" -> {
+                        resources.getString(R.string.action_measure) -> {
                             findNavController().navigate(R.id.action_mainMenuFragment_to_measureHeartRateFragment)
                         }
-                        "Export HR Data" -> {
+                        resources.getString(R.string.action_export) -> {
                             //Navigate to Export Heart Rate
                         }
                     }

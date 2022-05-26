@@ -4,7 +4,7 @@
         <shape android:shape="rectangle">
             <stroke
                 android:width="@dimen/border_stroke_width"
-                android:color="@color/dimmed_menu_item_bg_color" />
+                android:color="@color/menu_item_text_color_selected" />
             <corners android:radius="@dimen/border_radius" />
         </shape>
     </item>
@@ -14,7 +14,7 @@
         android:right="@dimen/space"
         android:top="@dimen/space">
         <shape android:shape="rectangle">
-            <solid android:color="@color/dimmed_menu_item_bg_color" />
+            <solid android:color="@color/menu_item_text_color_selected" />
             <corners android:radius="@dimen/border_radius" />
         </shape>
     </item>

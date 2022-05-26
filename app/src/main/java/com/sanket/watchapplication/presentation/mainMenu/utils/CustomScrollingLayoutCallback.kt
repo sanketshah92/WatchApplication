@@ -23,6 +23,12 @@ class CustomScrollingLayoutCallback : WearableLinearLayoutManager.LayoutCallback
             progressToCenter = abs(0.5f - yRelativeToCenterOffset)
             // Adjust to the maximum scale
             progressToCenter = progressToCenter.coerceAtMost(MAX_ICON_PROGRESS)
+            val centerPosition = 1 - progressToCenter
+            if(centerPosition>=0.9){
+                child.background = resources.getDrawable(R.drawable.selector_center_main_menu_item_press,null)
+            }else{
+                child.background = resources.getDrawable(R.drawable.selector_dimmed_main_menu_item_press,null)
+            }
         }
     }
 }
