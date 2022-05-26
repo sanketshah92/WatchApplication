@@ -27,6 +27,7 @@ class MeasureHeartRateFragment : Fragment() {
         tv_measurement.visibility = View.VISIBLE
         btnStart.visibility = View.VISIBLE
         txtHeartRate.text = "---"
+        iv_arrow.visibility = View.VISIBLE
         stopListeningHeartBeatView()
         addStartStopListeners()
     }
@@ -43,6 +44,7 @@ class MeasureHeartRateFragment : Fragment() {
     private fun hideInitialView() {
         btnStart.visibility = View.GONE
         tv_measurement.visibility = View.GONE
+        iv_arrow.visibility = View.INVISIBLE
     }
 
     private fun startListeningHeartBeatView() {
