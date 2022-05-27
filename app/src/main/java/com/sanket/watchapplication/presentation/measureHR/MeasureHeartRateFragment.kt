@@ -8,8 +8,9 @@ import androidx.fragment.app.Fragment
 import com.sanket.watchapplication.R
 import kotlinx.android.synthetic.main.fragment_measure_hr.*
 
-class MeasureHeartRateFragment : Fragment() {
 
+class MeasureHeartRateFragment : Fragment() {
+    private lateinit var graphUtils: HeartRateGraphUtils
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -20,6 +21,7 @@ class MeasureHeartRateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        graphUtils = HeartRateGraphUtils(animHeartBeat)
         setupInitialView()
     }
 
@@ -30,6 +32,15 @@ class MeasureHeartRateFragment : Fragment() {
         iv_arrow.visibility = View.VISIBLE
         stopListeningHeartBeatView()
         addStartStopListeners()
+        graphUtils.initializeGraphProperties()
+        createHeartDummyRecords()
+    }
+
+    private fun createHeartDummyRecords() {
+        graphUtils.addNewHeartEntry(7.0)
+        graphUtils.addNewHeartEntry(100.0)
+        graphUtils.addNewHeartEntry(108.0)
+        graphUtils.addNewHeartEntry(75.0)
     }
 
     private fun addStartStopListeners() {
