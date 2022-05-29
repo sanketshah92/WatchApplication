@@ -13,6 +13,11 @@ import com.sanket.watchapplication.databinding.FragmentExportHeartRateProgressBi
 
 class ExportHearRateProgressFragment : Fragment() {
     private lateinit var binding: FragmentExportHeartRateProgressBinding
+    private val handler: Handler = Handler(Looper.getMainLooper())
+    private val navigationRunnable = {
+        findNavController().navigate(R.id.action_exportHearRateProgressFragment_to_exportHeartRateResultFragment)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -22,10 +27,13 @@ class ExportHearRateProgressFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        Handler(Looper.getMainLooper()).postDelayed({
-            findNavController().navigate(R.id.action_exportHearRateProgressFragment_to_exportHeartRateResultFragment)
-        }, 2500)
+    override fun onStart() {
+        super.onStart()
+        handler.postDelayed(navigationRunnable, 2500)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        handler.removeCallbacksAndMessages(null)
     }
 }
