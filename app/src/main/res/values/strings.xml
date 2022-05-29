@@ -10,4 +10,8 @@
     <string name="start_continuous_heart_rate_measurements">Start continuous heart rate measurements</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
+    <string name="confirm">Confirm</string>
+    <string name="msg_export">All HR Data will be exported to a public folder and then removed</string>
+    <string name="msg_export_progress">Exporting data as .csv</string>
+    <string name="msg_export_success">Successfully exported HR Data!</string>
 </resources>
