@@ -34,7 +34,8 @@
         tools:layout="@layout/fragment_export_heart_rate_progress" >
         <action
             android:id="@+id/action_exportHearRateProgressFragment_to_exportHeartRateResultFragment"
-            app:destination="@id/exportHeartRateResultFragment" />
+            app:destination="@id/exportHeartRateResultFragment"
+            app:popUpTo="@id/mainMenuFragment" />
         <argument
             android:name="heartRateData"
             app:argType="com.sanket.watchapplication.data.models.HeartRateData[]" />

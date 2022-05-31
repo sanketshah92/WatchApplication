@@ -20,10 +20,6 @@ class ExportHearRateProgressFragment : Fragment() {
     private lateinit var binding: FragmentExportHeartRateProgressBinding
     private val handler: Handler = Handler(Looper.getMainLooper())
     private val viewModel: HeartRateToCSVViewModel by viewModel()
-    private val navigationRunnable = {
-        findNavController().navigate(R.id.action_exportHearRateProgressFragment_to_exportHeartRateResultFragment)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,21 +36,15 @@ class ExportHearRateProgressFragment : Fragment() {
             viewModel.prepareCSV(data.asList())
             viewModel.exportState.observe(viewLifecycleOwner, Observer {
                 when (it) {
-                    "Loading" -> {
-
-                    }
                     "SUCCESS" -> {
+                        Log.e("Navigating::","::::")
                         findNavController().navigate(R.id.action_exportHearRateProgressFragment_to_exportHeartRateResultFragment)
                     }
                     "ERROR" -> {
                         findNavController().popBackStack()
                     }
-                    else -> {
-
-                    }
                 }
             })
         }
-
     }
 }
