@@ -15,17 +15,23 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.sanket.watchapplication.BuildConfig
 import com.sanket.watchapplication.R
+import com.sanket.watchapplication.domain.HeartRateRepository
 import com.sanket.watchapplication.presentation.MainActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 
 const val ACTION_STOP_FOREGROUND = "${BuildConfig.APPLICATION_ID}.stop"
 
-class MeasureHeartRateService : Service(),SensorEventListener {
+class MeasureHeartRateService : Service(), SensorEventListener {
     private var iconNotification: Bitmap? = null
     private var notification: Notification? = null
     private var mNotificationManager: NotificationManager? = null
     private val mNotificationId = 123
     private lateinit var sensorManager: SensorManager
-    private lateinit var heartRateSensonr:Sensor
+    private lateinit var heartRateSensonr: Sensor
+    private val repository: HeartRateRepository by inject()
 
     override fun onBind(p0: Intent?): IBinder? {
         return null
@@ -36,20 +42,20 @@ class MeasureHeartRateService : Service(),SensorEventListener {
                 ACTION_STOP_FOREGROUND, ignoreCase = true
             )
         ) {
-            Log.e("STOPPING SERVICE::", ":::")
             stopForeground(true)
             stopSelf()
         }
-        Log.e("Service is running::", ":::")
         generateForegroundNotification()
         startListeningHeartRate()
         return START_STICKY
     }
-    private fun startListeningHeartRate(){
+
+    private fun startListeningHeartRate() {
         sensorManager = (getSystemService(SENSOR_SERVICE) as SensorManager)
         heartRateSensonr = sensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE)
-        sensorManager.registerListener(this,heartRateSensonr,SensorManager.SENSOR_DELAY_FASTEST)
+        sensorManager.registerListener(this, heartRateSensonr, SensorManager.SENSOR_DELAY_FASTEST)
     }
+
     private fun generateForegroundNotification() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val intentMainLanding = Intent(this, MainActivity::class.java)
@@ -102,12 +108,18 @@ class MeasureHeartRateService : Service(),SensorEventListener {
     }
 
     override fun onSensorChanged(p0: SensorEvent?) {
-        Log.e("P0::::","$p0")
         p0?.apply {
-           if(sensor.type==Sensor.TYPE_HEART_RATE && values.isNotEmpty()){
-               val heartRate = values[0]
-               Log.e("Senesor Event:","$heartRate")
-           }
+            if (sensor.type == Sensor.TYPE_HEART_RATE && values.isNotEmpty()) {
+                val heartRate = values[0]
+                Log.e("Senesor Event:", "$heartRate")
+                addHREntryToDB(heartRate.toInt())
+            }
+        }
+    }
+
+    private fun addHREntryToDB(heartRate: Int) {
+        CoroutineScope(Dispatchers.IO).launch {
+            repository.addNewHeartRateRecord(heartRate)
         }
     }
 

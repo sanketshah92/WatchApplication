@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import java.io.File
 
 class HeartRateRepositoryImpl() :
     HeartRateRepository, KoinComponent {
@@ -28,5 +27,15 @@ class HeartRateRepositoryImpl() :
 
     override suspend fun deleteHeartRateData() {
         dataSource.removeAllHeartRateDataFromDB()
+    }
+
+    override suspend fun addNewHeartRateRecord(heartRate: Int) {
+        dataSource.addHeartRateDataToDB(
+            HeartRateData(
+                id = 0,
+                heartRate = heartRate,
+                timestamp = System.currentTimeMillis()
+            )
+        )
     }
 }
