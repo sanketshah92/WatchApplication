@@ -1,5 +1,6 @@
 package com.sanket.watchapplication.data.repository
 
+import androidx.lifecycle.LiveData
 import com.sanket.watchapplication.data.datasource.HeartRateLocalDataSource
 import com.sanket.watchapplication.data.models.*
 import com.sanket.watchapplication.data.services.ExportService
@@ -37,5 +38,9 @@ class HeartRateRepositoryImpl() :
                 timestamp = System.currentTimeMillis()
             )
         )
+    }
+
+    override suspend fun getLiveHeartRate(): LiveData<HeartRateData> {
+        return dataSource.getLiveHeartRateFromDB()
     }
 }

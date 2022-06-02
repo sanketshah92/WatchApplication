@@ -5,12 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.sanket.watchapplication.R
+import com.sanket.watchapplication.presentation.measureHR.viewmodel.MeasureHeartRateViewModel
 import kotlinx.android.synthetic.main.fragment_measure_hr.*
+import org.koin.android.ext.android.inject
 
 
 class MeasureHeartRateFragment : Fragment() {
     private lateinit var graphUtils: HeartRateGraphUtils
+    private val measureHeartRateViewModel: MeasureHeartRateViewModel by inject()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -23,6 +27,11 @@ class MeasureHeartRateFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         graphUtils = HeartRateGraphUtils(animHeartBeat)
         setupInitialView()
+        measureHeartRateViewModel.listenHeartRate().observe(viewLifecycleOwner, Observer {
+            it.observe(viewLifecycleOwner, Observer { data ->
+                txtHeartRate.text = data.heartRate.toString()
+            })
+        })
     }
 
     private fun setupInitialView() {

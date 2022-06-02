@@ -1,5 +1,6 @@
 package com.sanket.watchapplication.domain
 
+import androidx.lifecycle.LiveData
 import com.sanket.watchapplication.data.models.HeartRateData
 import kotlinx.coroutines.flow.Flow
 
@@ -9,4 +10,5 @@ interface HeartRateRepository {
     suspend fun createCSVFromHeartRateData(heartRateData: List<HeartRateData>): Flow<Boolean>
     suspend fun deleteHeartRateData()
     suspend fun addNewHeartRateRecord(heartRate: Int)
+    suspend fun getLiveHeartRate():LiveData<HeartRateData>
 }

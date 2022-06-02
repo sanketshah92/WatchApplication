@@ -1,5 +1,6 @@
 package com.sanket.watchapplication.data.datasource
 
+import androidx.lifecycle.LiveData
 import com.sanket.watchapplication.data.db.HeartRateDAO
 import com.sanket.watchapplication.data.models.HeartRateData
 import org.koin.core.component.KoinComponent
@@ -17,5 +18,9 @@ class HeartRateLocalDataSourceImpl() : HeartRateLocalDataSource, KoinComponent {
 
     override suspend fun removeAllHeartRateDataFromDB() {
         dao.clearHeartRateData()
+    }
+
+    override suspend fun getLiveHeartRateFromDB(): LiveData<HeartRateData> {
+        return dao.getLiveHeartRateData()
     }
 }

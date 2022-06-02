@@ -1,5 +1,6 @@
 package com.sanket.watchapplication.data.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -16,4 +17,7 @@ interface HeartRateDAO {
 
     @Query("DELETE FROM heart_rate_history")
     suspend fun clearHeartRateData()
+
+    @Query("SELECT * FROM heart_rate_history ORDER BY id DESC LIMIT 1")
+     fun getLiveHeartRateData():LiveData<HeartRateData>
 }
