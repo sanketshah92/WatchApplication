@@ -14,4 +14,6 @@
     <string name="msg_export">All HR Data will be exported to a public folder and then removed</string>
     <string name="msg_export_progress">Exporting data as .csv</string>
     <string name="msg_export_success">Successfully exported HR Data!</string>
+    <string name="storage_permission_message">Please grant storage permission to export csv</string>
+    <string name="sensor_permission_message">Please grant body sensor permission to measure heart rate</string>
 </resources>

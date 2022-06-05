@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.sanket.watchapplication.R
 import com.sanket.watchapplication.data.models.HeartRateData
 import com.sanket.watchapplication.databinding.FragmentExportHeartRateConfirmBinding
 import com.sanket.watchapplication.presentation.exportHR.viewmodel.ExportHeartRateViewModel
@@ -31,7 +32,7 @@ class ExportHeartRateConfirmFragment : Fragment() {
                         permissionObserver.value = false
                         Toast.makeText(
                             requireContext(),
-                            "Please grant storage permission to export csv",
+                            getString(R.string.storage_permission_message),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
