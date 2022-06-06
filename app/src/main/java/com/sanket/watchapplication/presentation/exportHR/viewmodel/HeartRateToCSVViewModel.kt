@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
-
 import com.sanket.domain.models.HeartRateData
 import com.sanket.domain.usecase.CreateCSVUseCase
 import com.sanket.domain.usecase.DeleteHeartRateUseCase
@@ -13,11 +12,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
-class HeartRateToCSVViewModel : ViewModel(), KoinComponent {
-    private val createCsvUseCase: CreateCSVUseCase by inject()
-    private val deleteHeartRateUseCase: DeleteHeartRateUseCase by inject()
+class HeartRateToCSVViewModel(private val createCsvUseCase: CreateCSVUseCase,private val deleteHeartRateUseCase: DeleteHeartRateUseCase) : ViewModel(), KoinComponent {
 
     val exportState = MutableLiveData<String>()
 

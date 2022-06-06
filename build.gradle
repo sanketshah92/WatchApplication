@@ -18,6 +18,8 @@ buildscript {
         KOIN_VERSION = "3.2.0"
         LIFECYCLE_VERSION= "2.4.1"
         NAVIGATION_VERSION = "2.4.2"
+        MOCKITO_VERSION = "4.6.1"
+        TRUTH_VERSION = "1.1"
         subModules = [
                 data: ':data',
                 domain: ':domain',

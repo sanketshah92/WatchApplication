@@ -8,7 +8,7 @@ import org.koin.dsl.module
 
 
 val viewModelModule = module {
-    viewModel { ExportHeartRateViewModel() }
-    viewModel { HeartRateToCSVViewModel() }
-    viewModel { MeasureHeartRateViewModel() }
+    viewModel { ExportHeartRateViewModel(get()) }
+    viewModel { HeartRateToCSVViewModel(get(), get()) }
+    viewModel { MeasureHeartRateViewModel(get()) }
 }
