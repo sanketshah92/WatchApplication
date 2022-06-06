@@ -16,8 +16,8 @@ class HeartRateLocalDataSourceImpl() : HeartRateLocalDataSource, KoinComponent {
         dao.insertHeartRate(data)
     }
 
-    override suspend fun removeAllHeartRateDataFromDB() {
-        dao.clearHeartRateData()
+    override suspend fun removeAllHeartRateDataFromDB(): Boolean {
+        return dao.clearHeartRateData() > 0
     }
 
     override suspend fun getLiveHeartRateFromDB(): LiveData<HeartRateData> {

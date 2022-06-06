@@ -6,6 +6,6 @@ import com.sanket.domain.models.HeartRateData
 interface HeartRateLocalDataSource {
     suspend fun getAllHeartRateDataFromDB(): List<HeartRateData>?
     suspend fun addHeartRateDataToDB(data: HeartRateData)
-    suspend fun removeAllHeartRateDataFromDB()
+    suspend fun removeAllHeartRateDataFromDB():Boolean
     suspend fun getLiveHeartRateFromDB():LiveData<HeartRateData>
 }

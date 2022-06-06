@@ -30,8 +30,8 @@ class HeartRateRepositoryImpl() :
         return result
     }
 
-    override suspend fun deleteHeartRateData() {
-        dataSource.removeAllHeartRateDataFromDB()
+    override suspend fun deleteHeartRateData():Boolean {
+        return dataSource.removeAllHeartRateDataFromDB()
     }
 
     override suspend fun addNewHeartRateRecord(heartRate: Int) {

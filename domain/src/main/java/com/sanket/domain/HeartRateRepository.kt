@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 interface HeartRateRepository {
     suspend fun getHeartRateHistoryData(): List<HeartRateData>
     suspend fun createCSVFromHeartRateData(heartRateData: List<HeartRateData>): Flow<Boolean>
-    suspend fun deleteHeartRateData()
+    suspend fun deleteHeartRateData():Boolean
     suspend fun addNewHeartRateRecord(heartRate: Int)
     suspend fun getLiveHeartRate():LiveData<HeartRateData>
 }

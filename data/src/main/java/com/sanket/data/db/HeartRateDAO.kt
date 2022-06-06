@@ -16,7 +16,7 @@ interface HeartRateDAO {
     suspend fun getAllHeartRateData(): List<HeartRateData>
 
     @Query("DELETE FROM heart_rate_history")
-    suspend fun clearHeartRateData()
+    suspend fun clearHeartRateData():Int
 
     @Query("SELECT * FROM heart_rate_history ORDER BY id DESC LIMIT 1")
      fun getLiveHeartRateData():LiveData<HeartRateData>

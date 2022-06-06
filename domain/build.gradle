@@ -10,8 +10,13 @@ android {
 }
 
 dependencies {
+    testImplementation "org.mockito:mockito-core:$MOCKITO_VERSION"
+    testImplementation "com.google.truth:truth:$TRUTH_VERSION"
+    testImplementation("org.mockito:mockito-inline:2.8.47")
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.2'
+
     // Koin for the dependencies injections
-    //implementation project(path:subModules.data)
     implementation "androidx.room:room-runtime:$ROOM_VERSION"
     implementation "androidx.room:room-common:$ROOM_VERSION"
     kapt "androidx.room:room-compiler:$ROOM_VERSION"
