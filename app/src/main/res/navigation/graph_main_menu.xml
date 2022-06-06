@@ -38,7 +38,7 @@
             app:popUpTo="@id/mainMenuFragment" />
         <argument
             android:name="heartRateData"
-            app:argType="com.sanket.watchapplication.data.models.HeartRateData[]" />
+            app:argType="com.sanket.domain.models.HeartRateData[]" />
     </fragment>
     <fragment
         android:id="@+id/exportHeartRateConfirmFragment"

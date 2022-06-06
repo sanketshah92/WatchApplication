@@ -45,7 +45,7 @@
             </intent-filter>
         </activity>
         <service
-            android:name=".data.services.MeasureHeartRateService"
+            android:name="com.sanket.domain.MeasureHeartRateService"
             android:exported="false" />
     </application>
 

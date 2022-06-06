@@ -12,6 +12,17 @@ buildscript {
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
+    ext{
+        ROOM_VERSION = "2.4.2"
+        COROUTINE_VERSION = "1.6.0"
+        KOIN_VERSION = "3.2.0"
+        LIFECYCLE_VERSION= "2.4.1"
+        NAVIGATION_VERSION = "2.4.2"
+        subModules = [
+                data: ':data',
+                domain: ':domain',
+        ]
+    }
 }
 
 task clean(type: Delete) {

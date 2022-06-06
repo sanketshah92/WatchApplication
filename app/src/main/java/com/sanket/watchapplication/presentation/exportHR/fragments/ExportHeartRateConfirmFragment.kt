@@ -12,7 +12,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.sanket.watchapplication.R
-import com.sanket.watchapplication.data.models.HeartRateData
+
+import com.sanket.domain.models.HeartRateData
 import com.sanket.watchapplication.databinding.FragmentExportHeartRateConfirmBinding
 import com.sanket.watchapplication.presentation.exportHR.viewmodel.ExportHeartRateViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel

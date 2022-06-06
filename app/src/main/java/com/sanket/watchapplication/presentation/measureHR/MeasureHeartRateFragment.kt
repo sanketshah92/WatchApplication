@@ -10,8 +10,8 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.sanket.domain.MeasureHeartRateService
 import com.sanket.watchapplication.R
-import com.sanket.watchapplication.data.services.MeasureHeartRateService
 import com.sanket.watchapplication.presentation.measureHR.viewmodel.MeasureHeartRateViewModel
 import kotlinx.android.synthetic.main.fragment_measure_hr.*
 import org.koin.android.ext.android.inject
@@ -53,7 +53,7 @@ class MeasureHeartRateFragment : Fragment() {
     private fun startObservingHeartRateData() {
         measureHeartRateViewModel.listenHeartRate().observe(viewLifecycleOwner, Observer {
             it.observe(viewLifecycleOwner, Observer { data ->
-                data?.let{
+                data?.let {
                     txtHeartRate.text = it.heartRate.toString()
                     graphUtils.addNewHeartEntry(it.heartRate.toDouble())
                 }
@@ -63,6 +63,7 @@ class MeasureHeartRateFragment : Fragment() {
     }
 
     private fun startHeartRateMeasureService() {
+       // val service = MeasureHeartRateService(requireActivity())
         requireActivity().startForegroundService(
             Intent(
                 requireContext(),

@@ -4,9 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
-import com.sanket.watchapplication.data.models.HeartRateData
-import com.sanket.watchapplication.domain.usecase.CreateCSVUseCase
-import com.sanket.watchapplication.domain.usecase.DeleteHeartRateUseCase
+
+import com.sanket.domain.models.HeartRateData
+import com.sanket.domain.usecase.CreateCSVUseCase
+import com.sanket.domain.usecase.DeleteHeartRateUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.catch
