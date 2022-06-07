@@ -19,8 +19,6 @@ dependencies {
 
     implementation "androidx.room:room-runtime:$ROOM_VERSION"
     implementation "androidx.room:room-common:$ROOM_VERSION"
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-    testImplementation 'org.junit.jupiter:junit-jupiter'
     kapt "androidx.room:room-compiler:$ROOM_VERSION"
     implementation("androidx.room:room-ktx:$ROOM_VERSION")
 

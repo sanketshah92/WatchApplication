@@ -10,7 +10,7 @@ import com.sanket.domain.models.HeartRateData
 @Dao
 interface HeartRateDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertHeartRate(heartRate: HeartRateData)
+    suspend fun insertHeartRate(heartRate: HeartRateData):Long
 
     @Query("SELECT * FROM heart_rate_history")
     suspend fun getAllHeartRateData(): List<HeartRateData>

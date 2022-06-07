@@ -6,5 +6,5 @@ import org.koin.dsl.module
 
 
 val heartRateRepositoryModule = module {
-    factory<HeartRateRepository> { HeartRateRepositoryImpl() }
+    factory<HeartRateRepository> { HeartRateRepositoryImpl(get()) }
 }

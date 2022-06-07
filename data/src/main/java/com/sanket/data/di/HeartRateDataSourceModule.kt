@@ -6,5 +6,5 @@ import org.koin.dsl.module
 
 
 val heartRateDataSourceModule = module {
-    factory<HeartRateLocalDataSource> { HeartRateLocalDataSourceImpl() }
+    factory<HeartRateLocalDataSource> { HeartRateLocalDataSourceImpl(get()) }
 }

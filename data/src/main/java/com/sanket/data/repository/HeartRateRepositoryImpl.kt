@@ -12,11 +12,10 @@ import com.sanket.domain.models.HeartRateData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
-class HeartRateRepositoryImpl() :
+class HeartRateRepositoryImpl(private val dataSource: HeartRateLocalDataSource) :
     HeartRateRepository, KoinComponent {
-    private val dataSource: HeartRateLocalDataSource by inject()
+
     override suspend fun getHeartRateHistoryData(): List<HeartRateData> {
         return dataSource.getAllHeartRateDataFromDB() ?: emptyList()
     }
