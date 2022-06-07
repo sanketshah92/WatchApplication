@@ -33,8 +33,8 @@ class HeartRateRepositoryImpl(private val dataSource: HeartRateLocalDataSource) 
         return dataSource.removeAllHeartRateDataFromDB()
     }
 
-    override suspend fun addNewHeartRateRecord(heartRate: Int) {
-        dataSource.addHeartRateDataToDB(
+    override suspend fun addNewHeartRateRecord(heartRate: Int):Long {
+        return dataSource.addHeartRateDataToDB(
             HeartRateData(
                 id = 0,
                 heartRate = heartRate,
