@@ -7,26 +7,28 @@ import androidx.lifecycle.viewModelScope
 import com.sanket.domain.models.HeartRateData
 import com.sanket.domain.usecase.CreateCSVUseCase
 import com.sanket.domain.usecase.DeleteHeartRateUseCase
+import com.sanket.watchapplication.presentation.utils.ERROR
+import com.sanket.watchapplication.presentation.utils.LOADING
+import com.sanket.watchapplication.presentation.utils.SUCCESS
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
-import org.koin.core.component.KoinComponent
 
-class HeartRateToCSVViewModel(private val createCsvUseCase: CreateCSVUseCase,private val deleteHeartRateUseCase: DeleteHeartRateUseCase) : ViewModel(), KoinComponent {
+class HeartRateToCSVViewModel(private val createCsvUseCase: CreateCSVUseCase,private val deleteHeartRateUseCase: DeleteHeartRateUseCase) : ViewModel() {
 
     val exportState = MutableLiveData<String>()
 
     fun prepareCSV(data: List<HeartRateData>) {
         viewModelScope.launch(Dispatchers.IO) {
-            exportState.postValue("Loading")
+            exportState.postValue(LOADING)
             createCsvUseCase.execute(data).catch { error ->
-                exportState.postValue("ERROR")
+                exportState.postValue(ERROR)
                 error.printStackTrace()
             }.collect { isSuccess ->
                 if (isSuccess) {
                     delay(2500)
-                    exportState.postValue("SUCCESS")
+                    exportState.postValue(SUCCESS)
                 }
             }
         }

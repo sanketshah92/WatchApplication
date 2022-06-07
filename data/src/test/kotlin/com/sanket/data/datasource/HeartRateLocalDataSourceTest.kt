@@ -15,7 +15,7 @@ import org.junit.Rule
 import org.junit.Test
 
 
-class HeartRateLocalDataSourceImplTest {
+class HeartRateLocalDataSourceTest {
     @DelicateCoroutinesApi
     private val mainThreadSurrogate = newSingleThreadContext("UI thread")
 
@@ -23,8 +23,8 @@ class HeartRateLocalDataSourceImplTest {
     val rule = InstantTaskExecutorRule()
 
     private val dao = mock<HeartRateDAO>()
-    private val dataSource: HeartRateLocalDataSourceImpl by lazy {
-        HeartRateLocalDataSourceImpl(dao)
+    private val dataSource: HeartRateLocalDataSource by lazy {
+        HeartRateLocalDataSource(dao)
     }
 
     @ExperimentalCoroutinesApi

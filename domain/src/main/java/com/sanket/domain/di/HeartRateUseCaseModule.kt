@@ -8,8 +8,8 @@ import org.koin.dsl.module
 
 
 val heartRateUseCaseModule = module {
-    factory<GetHeartRateHistoryUseCase> { GetHeartRateHistoryUseCase(get()) }
-    factory<CreateCSVUseCase> { CreateCSVUseCase(get()) }
-    factory<DeleteHeartRateUseCase> { DeleteHeartRateUseCase(get()) }
-    factory<GetLiveHeartRateUseCase> { GetLiveHeartRateUseCase(get()) }
+    single { GetHeartRateHistoryUseCase(get()) }
+    single { CreateCSVUseCase(get()) }
+    single { DeleteHeartRateUseCase(get()) }
+    single { GetLiveHeartRateUseCase(get()) }
 }

@@ -1,10 +1,10 @@
 package com.sanket.data.di
 
-import com.sanket.data.repository.HeartRateRepositoryImpl
-import com.sanket.domain.HeartRateRepository
+import com.sanket.data.repository.HeartRateRepository
+import com.sanket.domain.IHeartRateRepository
 import org.koin.dsl.module
 
 
 val heartRateRepositoryModule = module {
-    factory<HeartRateRepository> { HeartRateRepositoryImpl(get()) }
+    factory <IHeartRateRepository> { HeartRateRepository(get()) }
 }

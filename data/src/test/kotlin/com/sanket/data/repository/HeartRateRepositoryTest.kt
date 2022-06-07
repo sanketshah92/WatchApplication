@@ -2,7 +2,7 @@ package com.sanket.data.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
-import com.sanket.data.datasource.HeartRateLocalDataSource
+import com.sanket.data.datasource.IHeartRateLocalDataSource
 import com.sanket.domain.models.HeartRateData
 import com.sanket.watchapplication.utils.mock
 import com.sanket.watchapplication.utils.whenever
@@ -15,15 +15,15 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-class HeartRateRepositoryImplTest {
+class HeartRateRepositoryTest {
     @DelicateCoroutinesApi
     private val mainThreadSurrogate = newSingleThreadContext("UI thread")
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
-    private val dataSource = mock<HeartRateLocalDataSource>()
-    private val repository: HeartRateRepositoryImpl by lazy {
-        HeartRateRepositoryImpl(dataSource)
+    private val dataSource = mock<IHeartRateLocalDataSource>()
+    private val repository: HeartRateRepository by lazy {
+        HeartRateRepository(dataSource)
     }
 
     @ExperimentalCoroutinesApi

@@ -3,7 +3,7 @@ package com.sanket.domain.usecase
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import com.google.common.truth.Truth.assertThat
-import com.sanket.domain.HeartRateRepository
+import com.sanket.domain.IHeartRateRepository
 import com.sanket.domain.models.HeartRateData
 import com.sanket.watchapplication.utils.mock
 import com.sanket.watchapplication.utils.whenever
@@ -22,7 +22,7 @@ class GetLiveHeartRateUseCaseTest {
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
-    private val repository = mock<HeartRateRepository>()
+    private val repository = mock<IHeartRateRepository>()
     val useCase: GetLiveHeartRateUseCase by lazy {
         GetLiveHeartRateUseCase(repository)
     }

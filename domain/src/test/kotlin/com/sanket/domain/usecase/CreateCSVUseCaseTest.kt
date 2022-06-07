@@ -1,7 +1,7 @@
 package com.sanket.domain.usecase
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.sanket.domain.HeartRateRepository
+import com.sanket.domain.IHeartRateRepository
 import com.sanket.domain.models.HeartRateData
 import com.sanket.watchapplication.utils.mock
 import kotlinx.coroutines.*
@@ -18,7 +18,7 @@ class CreateCSVUseCaseTest {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
-    private val repository = mock<HeartRateRepository>()
+    private val repository = mock<IHeartRateRepository>()
     val usecase: CreateCSVUseCase by lazy {
         CreateCSVUseCase(repository)
     }

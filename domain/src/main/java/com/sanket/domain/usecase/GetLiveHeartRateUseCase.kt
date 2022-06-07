@@ -1,9 +1,8 @@
 package com.sanket.domain.usecase
 
-import com.sanket.domain.HeartRateRepository
-import org.koin.core.component.KoinComponent
+import com.sanket.domain.IHeartRateRepository
 
 
-class GetLiveHeartRateUseCase(private val heartRateRepository: HeartRateRepository) : KoinComponent {
-    suspend fun execute() = heartRateRepository.getLiveHeartRate()
+class GetLiveHeartRateUseCase(private val iHeartRateRepository: IHeartRateRepository) {
+    suspend fun execute() = iHeartRateRepository.getLiveHeartRate()
 }

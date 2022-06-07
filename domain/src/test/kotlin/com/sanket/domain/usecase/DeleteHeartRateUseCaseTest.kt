@@ -2,7 +2,7 @@ package com.sanket.domain.usecase
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
-import com.sanket.domain.HeartRateRepository
+import com.sanket.domain.IHeartRateRepository
 import com.sanket.watchapplication.utils.mock
 import com.sanket.watchapplication.utils.whenever
 import kotlinx.coroutines.*
@@ -19,7 +19,7 @@ class DeleteHeartRateUseCaseTest{
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
-    private val repository = mock<HeartRateRepository>()
+    private val repository = mock<IHeartRateRepository>()
     val useCase:DeleteHeartRateUseCase by lazy {
         DeleteHeartRateUseCase(repository)
     }

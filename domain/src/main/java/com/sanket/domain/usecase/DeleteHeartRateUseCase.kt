@@ -1,8 +1,7 @@
 package com.sanket.domain.usecase
 
-import com.sanket.domain.HeartRateRepository
-import org.koin.core.component.KoinComponent
+import com.sanket.domain.IHeartRateRepository
 
-class DeleteHeartRateUseCase(private val repository: HeartRateRepository ) : KoinComponent {
+class DeleteHeartRateUseCase(private val repository: IHeartRateRepository)  {
     suspend fun execute() = repository.deleteHeartRateData()
 }

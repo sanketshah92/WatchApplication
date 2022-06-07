@@ -31,7 +31,8 @@ class MeasureHeartRateService : Service(), SensorEventListener {
     private val mNotificationId = 123
     private lateinit var sensorManager: SensorManager
     private lateinit var heartRateSensonr: Sensor
-    private val repository: HeartRateRepository by inject()
+
+    private val repositoryI: IHeartRateRepository by inject()
 
     override fun onBind(p0: Intent?): IBinder? {
         return null
@@ -122,7 +123,7 @@ class MeasureHeartRateService : Service(), SensorEventListener {
 
     private fun addHREntryToDB(heartRate: Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            repository.addNewHeartRateRecord(heartRate)
+            repositoryI.addNewHeartRateRecord(heartRate)
         }
     }
 

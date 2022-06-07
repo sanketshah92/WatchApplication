@@ -12,6 +12,8 @@ import androidx.navigation.fragment.findNavController
 import com.sanket.watchapplication.R
 import com.sanket.watchapplication.databinding.FragmentExportHeartRateProgressBinding
 import com.sanket.watchapplication.presentation.exportHR.viewmodel.HeartRateToCSVViewModel
+import com.sanket.watchapplication.presentation.utils.ERROR
+import com.sanket.watchapplication.presentation.utils.SUCCESS
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ExportHearRateProgressFragment : Fragment() {
@@ -34,12 +36,12 @@ class ExportHearRateProgressFragment : Fragment() {
             viewModel.prepareCSV(data.asList())
             viewModel.exportState.observe(viewLifecycleOwner, Observer {
                 when (it) {
-                    "SUCCESS" -> {
+                    SUCCESS -> {
                         viewModel.removePastRecords().observe(viewLifecycleOwner, Observer {
                             findNavController().navigate(R.id.action_exportHearRateProgressFragment_to_exportHeartRateResultFragment)
                         })
                     }
-                    "ERROR" -> {
+                    ERROR -> {
                         findNavController().popBackStack()
                     }
                 }
