@@ -46,6 +46,9 @@ dependencies {
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation "com.opencsv:opencsv:5.3"
+    implementation 'com.google.android.support:wearable:2.9.0'
+    implementation 'com.google.android.gms:play-services-base:18.0.1'
+    implementation 'androidx.palette:palette-ktx:1.0.0'
 
     testImplementation "org.mockito:mockito-core:$MOCKITO_VERSION"
     testImplementation "com.google.truth:truth:$TRUTH_VERSION"
@@ -76,6 +79,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$LIFECYCLE_VERSION"
     // Saved state module for ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$LIFECYCLE_VERSION"
+    compileOnly 'com.google.android.wearable:wearable:2.9.0'
     // Annotation processor
     kapt "androidx.lifecycle:lifecycle-compiler:$LIFECYCLE_VERSION"
 

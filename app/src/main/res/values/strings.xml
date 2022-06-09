@@ -16,4 +16,7 @@
     <string name="msg_export_success">Successfully exported HR Data!</string>
     <string name="storage_permission_message">Please grant storage permission to export csv</string>
     <string name="sensor_permission_message">Please grant body sensor permission to measure heart rate</string>
+    <string name="message">Watch face tapped</string>
+    <string name="my_analog_name">My Analog</string>
+    <string name="my_digital_name">My Digital</string>
 </resources>
