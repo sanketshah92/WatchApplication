@@ -1,6 +1,11 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs'
+    //id 'kotlin-parcelize'
+
 }
 
 android {
@@ -27,6 +32,8 @@ android {
 }
 
 dependencies {
+    implementation project(path: subModules.domain)
+    implementation project(path: subModules.data)
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'com.google.android.gms:play-services-wearable:17.0.0'
@@ -34,4 +41,47 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
     implementation 'androidx.wear:wear:1.1.0'
+    implementation 'com.airbnb.android:lottie:5.1.1'
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation "com.opencsv:opencsv:5.3"
+    implementation 'com.google.android.support:wearable:2.9.0'
+    implementation 'com.google.android.gms:play-services-base:18.0.1'
+    implementation 'androidx.palette:palette-ktx:1.0.0'
+
+    testImplementation "org.mockito:mockito-core:$MOCKITO_VERSION"
+    testImplementation "com.google.truth:truth:$TRUTH_VERSION"
+    testImplementation("org.mockito:mockito-inline:2.8.47")
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.2'
+
+
+    implementation "androidx.navigation:navigation-fragment-ktx:$NAVIGATION_VERSION"
+    implementation "androidx.navigation:navigation-ui-ktx:$NAVIGATION_VERSION"
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$COROUTINE_VERSION"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$COROUTINE_VERSION"
+
+    // Koin for the dependencies injections
+    implementation "io.insert-koin:koin-core:$KOIN_VERSION"
+    testImplementation "io.insert-koin:koin-test:$KOIN_VERSION"
+    implementation "io.insert-koin:koin-android:$KOIN_VERSION"
+    implementation "io.insert-koin:koin-androidx-workmanager:$KOIN_VERSION"
+
+
+    //KTX libraries
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$LIFECYCLE_VERSION"
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$LIFECYCLE_VERSION"
+    // Lifecycles only (without ViewModel or LiveData)
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$LIFECYCLE_VERSION"
+    // Saved state module for ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$LIFECYCLE_VERSION"
+    compileOnly 'com.google.android.wearable:wearable:2.9.0'
+    // Annotation processor
+    kapt "androidx.lifecycle:lifecycle-compiler:$LIFECYCLE_VERSION"
+
+
 }

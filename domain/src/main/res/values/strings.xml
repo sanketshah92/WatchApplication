@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">WatchApplication</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="action_measure">Measure HR</string>
+    <string name="action_export">Export HR Data</string>
+    <string name="start_continuous_heart_rate_measurements">Start continuous heart rate measurements</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="confirm">Confirm</string>
+    <string name="msg_export">All HR Data will be exported to a public folder and then removed</string>
+    <string name="msg_export_progress">Exporting data as .csv</string>
+    <string name="msg_export_success">Successfully exported HR Data!</string>
+    <string name="storage_permission_message">Please grant storage permission to export csv</string>
+    <string name="sensor_permission_message">Please grant body sensor permission to measure heart rate</string>
+</resources>

@@ -10,7 +10,14 @@
 
     <uses-feature android:name="android.hardware.type.watch" />
 
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.BODY_SENSORS" />
+
     <application
+        android:name=".HeartRateApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,7 +28,7 @@
             android:value="true" />
 
         <service
-            android:name=".presentation.watchface.HRWatchFace"
+            android:name=".presentation.watchface.MyWatchFace"
             android:exported="false"
             android:label="@string/my_digital_name"
             android:permission="android.permission.BIND_WALLPAPER">
@@ -67,7 +74,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.MainActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
@@ -76,6 +83,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name="com.sanket.domain.MeasureHeartRateService"
+            android:exported="false" />
     </application>
 
 </manifest>
