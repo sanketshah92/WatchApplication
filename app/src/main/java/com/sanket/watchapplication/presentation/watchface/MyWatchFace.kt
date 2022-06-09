@@ -207,7 +207,7 @@ class MyWatchFace : CanvasWatchFaceService() {
 
 
 
-            mYOffset = bitmap.height - 150f
+            mYOffset = bitmap.height - resources.getDimension(R.dimen._100sdp)
             mXOffset = (canvas.width / 4.99).toFloat()
             canvas.drawText(timeText, mXOffset, mYOffset, mTextPaint)
             val dateTextPaint = Paint().apply {
@@ -218,8 +218,8 @@ class MyWatchFace : CanvasWatchFaceService() {
                     R.color.menu_item_text_color_selected
                 )
             }
-            dateTextPaint.textSize = 16f
-            canvas.drawText(date, mXOffset + 95f, mYOffset + 20f, dateTextPaint)
+            dateTextPaint.textSize = resources.getDimension(R.dimen._13ssp)
+            canvas.drawText(date, mXOffset + resources.getDimension(R.dimen._50sdp), mYOffset + resources.getDimension(R.dimen._16sdp), dateTextPaint)
         }
 
         override fun onVisibilityChanged(visible: Boolean) {
