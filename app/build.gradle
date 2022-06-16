@@ -40,7 +40,7 @@ dependencies {
     implementation 'androidx.percentlayout:percentlayout:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
-    implementation 'androidx.wear:wear:1.1.0'
+    implementation 'androidx.wear:wear:1.2.0'
     implementation 'com.airbnb.android:lottie:5.1.1'
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'com.intuit.ssp:ssp-android:1.0.6'

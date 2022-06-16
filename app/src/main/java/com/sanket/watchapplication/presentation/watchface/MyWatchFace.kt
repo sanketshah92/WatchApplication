@@ -14,6 +14,7 @@ import android.support.wearable.watchface.WatchFaceStyle
 import android.view.SurfaceHolder
 import android.view.WindowInsets
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import com.sanket.watchapplication.R
 import com.sanket.watchapplication.presentation.MainActivity
 import java.lang.ref.WeakReference
@@ -35,9 +36,14 @@ import java.util.*
  * https://codelabs.developers.google.com/codelabs/watchface/index.html#0
  */
 class MyWatchFace : CanvasWatchFaceService() {
+    private lateinit var backgroundImageBitmap :Bitmap
+
+
 
     companion object {
-        private val NORMAL_TYPEFACE = Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL)
+        private const val WATCHFACE_TIME_FORMAT = "hh:mm a"
+
+        private const val WATCHFACE_DATE_FORMAT = "MMM dd,yyyy"
 
         /**
          * Updates rate in milliseconds for interactive mode. We update once a second since seconds
@@ -107,7 +113,7 @@ class MyWatchFace : CanvasWatchFaceService() {
             )
 
             mCalendar = Calendar.getInstance()
-
+            backgroundImageBitmap = BitmapFactory.decodeResource(resources, R.drawable.preview_digital_circular)
             val resources = this@MyWatchFace.resources
             mYOffset = resources.getDimension(R.dimen.digital_y_offset)
 
@@ -118,7 +124,7 @@ class MyWatchFace : CanvasWatchFaceService() {
 
             // Initializes Watch Face.
             mTextPaint = Paint().apply {
-                typeface = NORMAL_TYPEFACE
+                typeface = ResourcesCompat.getFont(applicationContext, R.font.roboto)
                 isAntiAlias = true
                 color = ContextCompat.getColor(
                     applicationContext,
@@ -184,34 +190,29 @@ class MyWatchFace : CanvasWatchFaceService() {
         }
 
         override fun onDraw(canvas: Canvas, bounds: Rect) {
+            val scaledBitmap =
+                Bitmap.createScaledBitmap(backgroundImageBitmap, canvas.width, canvas.height, true)
 
-            val bitmap =
-                BitmapFactory.decodeResource(resources, R.drawable.preview_digital_circular)
-            val scaledBitmap = Bitmap.createScaledBitmap(bitmap,canvas.width,canvas.height,true)
             canvas.drawBitmap(scaledBitmap, 0f, 0f, null)
 
-            // Draw H:MM in ambient mode or H:MM:SS in interactive mode.
             val now = System.currentTimeMillis()
             mCalendar.timeInMillis = now
 
+            mYOffset = backgroundImageBitmap.height - resources.getDimension(R.dimen._100sdp)
+            mXOffset = (canvas.width / 4.99).toFloat()
 
-            val timeFormat = "hh:mm a"
-            val timeText = LocalTime.now().format(DateTimeFormatter.ofPattern(timeFormat))
+            //Fetch time on every draw event
+             val timeText = LocalTime.now().format(DateTimeFormatter.ofPattern(WATCHFACE_TIME_FORMAT))
 
-            val dateFormat = "MMM dd,yyyy"
-
-            val date = SimpleDateFormat(
-                dateFormat,
+            //Fetch date on every draw event
+             val date = SimpleDateFormat(
+                 WATCHFACE_DATE_FORMAT,
                 Locale.getDefault()
             ).format(Calendar.getInstance().time)
 
-
-
-            mYOffset = bitmap.height - resources.getDimension(R.dimen._100sdp)
-            mXOffset = (canvas.width / 4.99).toFloat()
             canvas.drawText(timeText, mXOffset, mYOffset, mTextPaint)
             val dateTextPaint = Paint().apply {
-                typeface = NORMAL_TYPEFACE
+                typeface = ResourcesCompat.getFont(applicationContext, R.font.roboto)
                 isAntiAlias = true
                 color = ContextCompat.getColor(
                     applicationContext,
@@ -219,7 +220,12 @@ class MyWatchFace : CanvasWatchFaceService() {
                 )
             }
             dateTextPaint.textSize = resources.getDimension(R.dimen._13ssp)
-            canvas.drawText(date, mXOffset + resources.getDimension(R.dimen._50sdp), mYOffset + resources.getDimension(R.dimen._16sdp), dateTextPaint)
+            canvas.drawText(
+                date,
+                mXOffset + resources.getDimension(R.dimen._50sdp),
+                mYOffset + resources.getDimension(R.dimen._16sdp),
+                dateTextPaint
+            )
         }
 
         override fun onVisibilityChanged(visible: Boolean) {
