@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/txtMainMenuItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/_8sdp"
+    android:layout_marginTop="@dimen/_6sdp"
+    android:layout_marginEnd="@dimen/_8sdp"
+    android:background="@drawable/selector_dimmed_main_menu_item_press"
+    android:fontFamily="sans-serif-condensed-medium"
+    android:gravity="center"
+    android:minHeight="@dimen/_56sdp"
+    tools:text="Action 1"
+    android:textColor="@color/color_main_menu_item"
+    android:textSize="@dimen/_13ssp" />
