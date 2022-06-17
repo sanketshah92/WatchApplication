@@ -36,8 +36,9 @@ import java.util.*
  * https://codelabs.developers.google.com/codelabs/watchface/index.html#0
  */
 class MyWatchFace : CanvasWatchFaceService() {
-    private lateinit var backgroundImageBitmap :Bitmap
-
+    private lateinit var backgroundImageBitmap: Bitmap
+    private var timeText: String? = null
+    private var date: String? = null
 
 
     companion object {
@@ -113,7 +114,8 @@ class MyWatchFace : CanvasWatchFaceService() {
             )
 
             mCalendar = Calendar.getInstance()
-            backgroundImageBitmap = BitmapFactory.decodeResource(resources, R.drawable.preview_digital_circular)
+            backgroundImageBitmap =
+                BitmapFactory.decodeResource(resources, R.drawable.preview_digital_circular)
             val resources = this@MyWatchFace.resources
             mYOffset = resources.getDimension(R.dimen.digital_y_offset)
 
@@ -190,10 +192,8 @@ class MyWatchFace : CanvasWatchFaceService() {
         }
 
         override fun onDraw(canvas: Canvas, bounds: Rect) {
-            val scaledBitmap =
-                Bitmap.createScaledBitmap(backgroundImageBitmap, canvas.width, canvas.height, true)
 
-            canvas.drawBitmap(scaledBitmap, 0f, 0f, null)
+            canvas.drawBitmap(backgroundImageBitmap, 0f, 0f, null)
 
             val now = System.currentTimeMillis()
             mCalendar.timeInMillis = now
@@ -201,16 +201,10 @@ class MyWatchFace : CanvasWatchFaceService() {
             mYOffset = backgroundImageBitmap.height - resources.getDimension(R.dimen._100sdp)
             mXOffset = (canvas.width / 4.99).toFloat()
 
-            //Fetch time on every draw event
-             val timeText = LocalTime.now().format(DateTimeFormatter.ofPattern(WATCHFACE_TIME_FORMAT))
 
-            //Fetch date on every draw event
-             val date = SimpleDateFormat(
-                 WATCHFACE_DATE_FORMAT,
-                Locale.getDefault()
-            ).format(Calendar.getInstance().time)
-
-            canvas.drawText(timeText, mXOffset, mYOffset, mTextPaint)
+            timeText?.let {
+                canvas.drawText(it, mXOffset, mYOffset, mTextPaint)
+            }
             val dateTextPaint = Paint().apply {
                 typeface = ResourcesCompat.getFont(applicationContext, R.font.roboto)
                 isAntiAlias = true
@@ -220,12 +214,15 @@ class MyWatchFace : CanvasWatchFaceService() {
                 )
             }
             dateTextPaint.textSize = resources.getDimension(R.dimen._13ssp)
-            canvas.drawText(
-                date,
-                mXOffset + resources.getDimension(R.dimen._50sdp),
-                mYOffset + resources.getDimension(R.dimen._16sdp),
-                dateTextPaint
-            )
+            date?.let {
+                canvas.drawText(
+                    it,
+                    mXOffset + resources.getDimension(R.dimen._50sdp),
+                    mYOffset + resources.getDimension(R.dimen._16sdp),
+                    dateTextPaint
+                )
+            }
+
         }
 
         override fun onVisibilityChanged(visible: Boolean) {
@@ -309,6 +306,14 @@ class MyWatchFace : CanvasWatchFaceService() {
          * Handle updating the time periodically in interactive mode.
          */
         fun handleUpdateTimeMessage() {
+           //updating date & time before drawing canvas
+            timeText =
+                LocalTime.now().format(DateTimeFormatter.ofPattern(WATCHFACE_TIME_FORMAT))
+            date = SimpleDateFormat(
+                WATCHFACE_DATE_FORMAT,
+                Locale.getDefault()
+            ).format(Calendar.getInstance().time)
+
             invalidate()
             if (shouldTimerBeRunning()) {
                 val timeMs = System.currentTimeMillis()
