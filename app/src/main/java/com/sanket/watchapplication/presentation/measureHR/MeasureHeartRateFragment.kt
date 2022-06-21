@@ -1,16 +1,39 @@
 package com.sanket.watchapplication.presentation.measureHR
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import com.sanket.domain.MeasureHeartRateService
 import com.sanket.watchapplication.R
+import com.sanket.watchapplication.presentation.measureHR.viewmodel.MeasureHeartRateViewModel
 import kotlinx.android.synthetic.main.fragment_measure_hr.*
+import org.koin.android.ext.android.inject
 
 
 class MeasureHeartRateFragment : Fragment() {
     private lateinit var graphUtils: HeartRateGraphUtils
+    private val measureHeartRateViewModel: MeasureHeartRateViewModel by inject()
+    private val requestPermission =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+            if (it) {
+                startHeartRateMeasureService()
+                startObservingHeartRateData()
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.sensor_permission_message),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -21,8 +44,38 @@ class MeasureHeartRateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requestBodySensorPermission(requestPermission)
         graphUtils = HeartRateGraphUtils(animHeartBeat)
         setupInitialView()
+
+    }
+
+    private fun startObservingHeartRateData() {
+        measureHeartRateViewModel.listenHeartRate().observe(viewLifecycleOwner, Observer {
+            it.observe(viewLifecycleOwner, Observer { data ->
+                data?.let {
+                    txtHeartRate.text = it.heartRate.toString()
+                    graphUtils.addNewHeartEntry(it.heartRate.toDouble())
+                }
+
+            })
+        })
+    }
+
+    private fun startHeartRateMeasureService() {
+       // val service = MeasureHeartRateService(requireActivity())
+        requireActivity().startForegroundService(
+            Intent(
+                requireContext(),
+                MeasureHeartRateService::class.java
+            )
+        )
+    }
+
+    private fun requestBodySensorPermission(
+        requestPermission: ActivityResultLauncher<String>
+    ) {
+        requestPermission.launch(android.Manifest.permission.BODY_SENSORS)
     }
 
     private fun setupInitialView() {
@@ -33,14 +86,6 @@ class MeasureHeartRateFragment : Fragment() {
         stopListeningHeartBeatView()
         addStartStopListeners()
         graphUtils.initializeGraphProperties()
-        createHeartDummyRecords()
-    }
-
-    private fun createHeartDummyRecords() {
-        graphUtils.addNewHeartEntry(7.0)
-        graphUtils.addNewHeartEntry(100.0)
-        graphUtils.addNewHeartEntry(108.0)
-        graphUtils.addNewHeartEntry(75.0)
     }
 
     private fun addStartStopListeners() {
@@ -62,7 +107,7 @@ class MeasureHeartRateFragment : Fragment() {
         animHeartBeat.visibility = View.VISIBLE
         btnStop.visibility = View.VISIBLE
         iv_heart.playAnimation()
-        txtHeartRate.text = "72"
+        txtHeartRate.text = "---"
         hideInitialView()
     }
 

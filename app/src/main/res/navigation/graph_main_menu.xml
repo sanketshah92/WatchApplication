@@ -18,11 +18,41 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_exportHeartRateConfirmFragment"
+            app:destination="@id/exportHeartRateConfirmFragment" />
     </fragment>
     <fragment
         android:id="@+id/measureHeartRateFragment"
         android:name="com.sanket.watchapplication.presentation.measureHR.MeasureHeartRateFragment"
         android:label="MeasureHeartRateFragment"
         tools:layout="@layout/fragment_measure_hr" />
+    <fragment
+        android:id="@+id/exportHearRateProgressFragment"
+        android:name="com.sanket.watchapplication.presentation.exportHR.fragments.ExportHearRateProgressFragment"
+        android:label="ExportHearRateProgressFragment"
+        tools:layout="@layout/fragment_export_heart_rate_progress" >
+        <action
+            android:id="@+id/action_exportHearRateProgressFragment_to_exportHeartRateResultFragment"
+            app:destination="@id/exportHeartRateResultFragment"
+            app:popUpTo="@id/mainMenuFragment" />
+        <argument
+            android:name="heartRateData"
+            app:argType="com.sanket.domain.models.HeartRateData[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/exportHeartRateConfirmFragment"
+        android:name="com.sanket.watchapplication.presentation.exportHR.fragments.ExportHeartRateConfirmFragment"
+        android:label="ExportHeartRateConfirmFragment"
+        tools:layout="@layout/fragment_export_heart_rate_confirm">
+        <action
+            android:id="@+id/action_exportHeartRateConfirmFragment_to_exportHearRateProgressFragment"
+            app:destination="@id/exportHearRateProgressFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_export_heart_rate_success"
+        android:id="@+id/exportHeartRateResultFragment"
+        android:name="com.sanket.watchapplication.presentation.exportHR.fragments.ExportHeartRateResultFragment"
+        android:label="ExportHeartRateResultFragment" />
 
 </navigation>

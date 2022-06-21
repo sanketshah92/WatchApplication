@@ -43,7 +43,7 @@ class MainMenuFragment : Fragment() {
                             findNavController().navigate(R.id.action_mainMenuFragment_to_measureHeartRateFragment)
                         }
                         resources.getString(R.string.action_export) -> {
-                            //Navigate to Export Heart Rate
+                            findNavController().navigate(R.id.action_mainMenuFragment_to_exportHeartRateConfirmFragment)
                         }
                     }
                 }
