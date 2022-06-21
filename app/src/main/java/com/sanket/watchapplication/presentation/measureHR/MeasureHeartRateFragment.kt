@@ -10,7 +10,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.sanket.domain.MeasureHeartRateService
+import com.sanket.data.services.MeasureHeartRateService
 import com.sanket.watchapplication.R
 import com.sanket.watchapplication.presentation.measureHR.viewmodel.MeasureHeartRateViewModel
 import kotlinx.android.synthetic.main.fragment_measure_hr.*

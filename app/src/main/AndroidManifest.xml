@@ -85,7 +85,7 @@
         </activity>
 
         <service
-            android:name="com.sanket.domain.MeasureHeartRateService"
+            android:name="com.sanket.data.services.MeasureHeartRateService"
             android:exported="false" />
     </application>
 
